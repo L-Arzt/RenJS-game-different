@@ -1,0 +1,37 @@
+settings:
+  name: 'Spot the difference Game'
+  version: '1.0'
+  start: 'start'
+
+characters:
+  player:
+    name: 'Player'
+    color: '#5b5b5b'
+    directory: 'images'
+
+scenes:
+  start:
+    - say: 'Welcome to the spot the difference game!'
+    - choice:
+        choices:
+          - 'Start Game': start_game
+          - 'Quit': end
+
+  start_game:
+    - say: "Let's start the game.
+    - run: load_game
+    - run: start_game_logic
+    - end
+
+functions:
+  load_game:
+    - javascript: |
+        document.getElementById('game-container').style.display = 'block';
+
+  start_game_logic:
+    - javascript: |
+        initGame();
+
+  end:
+    - say: 'Thanks for playing!'
+    - end
